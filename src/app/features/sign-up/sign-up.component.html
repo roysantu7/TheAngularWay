@@ -1,0 +1,62 @@
+
+
+<div class="main-section">
+  <!-- <div fxLayout="column">
+    <p class="font-brand">AngularWay</p>
+    <p class="font-brand v-text">The</p>
+  </div> -->
+  <!-- <div>
+    <h1 class="font-brand text-center pt pb">TheAngularWay</h1>
+  </div> -->
+  <div class="form-container" fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="space-around center">
+    <div>
+      <h2 class="font-light">
+        Not a member yet?
+      </h2>
+      <h1 class="font-light font-55">Create your account now 
+        <mat-icon aria-hidden="false" aria-label="Example home icon">double_arrow</mat-icon>
+      </h1>
+    </div>
+    <form
+      [formGroup]="signUpForm"
+      fxLayout="row wrap"
+      fxLayoutAlign="start start"
+      fxLayoutGap=""
+    >
+      <div class="form-section">
+        <mat-card fxLayout="column">
+          <h2 class="font-light text-center pb title-border">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">app_registration </mat-icon> SIGN UP FORM
+          </h2>
+          <div *ngFor="let item of FormFieldsData">
+            <ng-container *ngIf="currentStep === item.step">
+              <div fxLayout="column">
+                <app-reactive-forms
+                  [formGroupInfo]="item.data"
+                  [formGroupTitle]="getFormGroup(item.name)"
+                ></app-reactive-forms>
+              </div>
+              <div class="button-row pt">
+                <div>
+                  <app-button
+                    *ngIf="!item.isFirstStep"
+                    [buttonInfo]="backButton"
+                    (onAction)="takeAction($event)"
+                  ></app-button>
+                </div>
+                <div>
+                  <app-button
+                    [buttonInfo]="
+                      item.isFinalStep ? submitButton : nextButton
+                    "
+                    (onAction)="takeAction($event, item.name)"
+                  ></app-button>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </mat-card>
+      </div>
+    </form>
+  </div>
+</div>

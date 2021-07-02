@@ -1,1 +1,144 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: #dfdfdf;}
+
+
+// css helper class
+.container {
+    margin: 10px;
+}
+.d-flex-col {
+    display: flex;
+    flex-direction: column;
+}
+.d-flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.primary-btn {
+    background-color: rgb(58, 92, 248);
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid rgb(19, 107, 179);
+    border-radius: 2px;
+    width: 120px;
+}
+.secondary-btn {
+    background-color: #aaa;
+    color: black;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #999;
+    border-radius: 2px;
+    width: 120px;
+}
+.text-center {
+    text-align: center;
+}
+.text-bold {
+    font-weight: 600;
+}
+.text-title {
+    font-size: 40px;
+}
+.text-sub-title {
+    font-size: 20px;
+}
+.text-small {
+    font-size: 10px;
+}
+
+.pa {
+    padding: 10px;
+}
+.pt {
+    padding-top: 10px;
+}
+.pb {
+    padding-bottom: 10px;
+}
+.pl {
+    padding-left: 10px;
+}
+.pr {
+    padding-right: 10px;
+}
+
+.py {
+    padding: 10px 0px;
+}
+.py-5 {
+    padding: 5px 0px;
+}
+
+.ma {
+    margin: 10px;
+}
+.my {
+    margin: 10px 0px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+// font
+
+.font-brand {
+    font-size: 40px;
+    color: #d39201;
+    font-family: serif;
+}
+.font-55 {
+    font-size: 55px;
+}
+
+// end of css helper class
+
+// 
+.header {
+    h2 {
+        font-size: 32px;
+    }
+}
+
+.field-color {
+    color: slategray;
+}
+
+.font-light {
+    color: thistle;
+}
+.font-white {
+    color: #fff;
+}
+
+.font-dark {
+    color: #666;
+}
+
+.font-small {
+    font-size: 12px;
+}
+
+.formarray-container, .formgroup-container{
+    // background-color: tomato;
+    padding: 20px;
+    border: 1px solid #aaa;
+    margin:10px;
+}
+
+// material override
+
+.mat-form-field, .checkbox-field, .radio-field {
+    width: 365px;
+}
+
+
+mat-error {
+    font-size: 12px;
+}

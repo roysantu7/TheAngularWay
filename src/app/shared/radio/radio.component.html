@@ -1,0 +1,8 @@
+<div>
+    <label>{{ fieldInfo.label }}: </label>
+    <mat-radio-group name="{{ fieldInfo.controlName }}" required="{{ fieldInfo.isRequired }}">
+        <ng-container *ngFor="let option of fieldInfo.optionList">
+            <mat-radio-button value="option.value">{{ option.name }}</mat-radio-button>
+        </ng-container>
+    </mat-radio-group>
+</div>
