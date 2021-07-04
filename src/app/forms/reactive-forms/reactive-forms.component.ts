@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, FormArray, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
-import { FormStructure } from 'src/app/core/models/form-structure.model';
+import { FormStructure } from '../../core/models/form-structure.model';
+import { cloneAbstractControl } from '../../util/form-methods.util';
 import { matchPasswords } from '../../shared/custom-validation/match-password.directive';
 
 @Component({
@@ -39,7 +40,12 @@ export class ReactiveFormsComponent implements OnInit, ControlValueAccessor {
   constructor(private fb: FormBuilder) { }
    
 
-  ngOnInit(): void {
+  ngOnInit() {
+    
+  }
+
+  ngOnChanges() {
+    // console.log('in reactive');
     // console.log(this.formGroupInfo);
     // console.log(this.formGroupTitle);
     // console.log('form Type: ',this.FormType);
@@ -53,12 +59,20 @@ export class ReactiveFormsComponent implements OnInit, ControlValueAccessor {
   }
 
   addItem(fGroup: FormGroup, controlName): void {
-    // this.formArrayItems = fGroup.get('formArrayItems') as FormArray;
-    // this.formArrayItems.push(this.createItem());
     (fGroup.get(controlName) as FormArray).push(this.createItem());
+  }
+  
+  copyItem(fGroup: FormGroup, controlName): void {
+    // (fGroup.get(controlName) as FormArray).push(this.createItem());
+    const formElement = (fGroup.get(controlName) as FormArray);
+    const lastIndex = formElement.length -1;
+    if(lastIndex >= 0) {
+      formElement.push(cloneAbstractControl(formElement.controls[lastIndex]));
+    }
   }
 
   deleteItem(controlName, i: number): void {
+    const lastElem = (this.formGroupTitle.get(controlName) as FormArray).controls[i];
     (this.formGroupTitle.get(controlName) as FormArray).removeAt(i);
   }
 
@@ -80,7 +94,7 @@ export class ReactiveFormsComponent implements OnInit, ControlValueAccessor {
         formGroup.addControl(field.controlName, this.fb.array([this.createItem()]));
         // formGroup.addControl('formArrayItems', this.fb.array([this.createItem()]));
       } else {
-        formGroup.addControl(field.controlName, new FormControl(field.value, field.validatorList));
+        formGroup.addControl(field.controlName, new FormControl({value: field.value, disabled: field.isDisabled}, field.validatorList));
       }
       
 

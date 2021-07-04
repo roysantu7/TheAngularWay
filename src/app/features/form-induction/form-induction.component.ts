@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { resetButton, submitButton } from 'src/app/constants/button-list.constant';
-import { formBaseStructure, parentFormArrayData, validatorMap } from 'src/app/constants/form-induction.constant';
+import { parentFormArrayData, validatorMap } from 'src/app/constants/form-induction.constant';
 import { FormStructure } from 'src/app/core/models/form-structure.model';
+import { FormInductionService } from '../services/form-induction.service';
 
 @Component({
   selector: 'app-form-induction',
@@ -13,32 +14,29 @@ export class FormInductionComponent implements OnInit {
   inductionForm: FormGroup;
   submitButton = submitButton;
   resetButton = resetButton;
-
-  // FormFieldsData: FormStructure[] = formInductionFields;
+  outputFormObject: FormStructure[];
   FormFieldsData: FormStructure[] = parentFormArrayData;
-  // currentStep:number = 1;
 
-  // test
 
-  testForm: FormGroup;
-  testFormData: FormStructure[] = formBaseStructure;
-  // end of test
-
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private formInductionService: FormInductionService) {
     
   }
 
   ngOnInit() {
     this.inductionForm = this.fb.group({});
-    this.testForm = this.fb.group({});
+    this.formInductionService.getFormTracker().subscribe( res => {
+      if(res) {
+        this.outputFormObject = this.formInductionService.formDetails;
+      }
+    })
   }
 
-
-  getFormGroup(name): FormGroup {
-    return this.inductionForm.get(name) as FormGroup;
-  }
-
-  takeAction(action: string) {
+  /**
+   * @method takeAction
+   * @description perform the required action on basis of users choice
+   * @param action 
+   */
+  takeAction(action: string): void {
     switch (action) {
       case 'onReset':
         console.log("reset!!!");
@@ -61,7 +59,12 @@ export class FormInductionComponent implements OnInit {
     }
   }
 
-  mapFormData(formData): void {
+  /**
+   * @method mapFormData
+   * @description create a valid formstructure object by proccessing the user input data
+   * @param formData 
+   */
+  mapFormData(formData: any): void {
     const processedData = [];
     formData.forEach((item, i) => {
       const field = item.fieldData;
@@ -107,7 +110,8 @@ export class FormInductionComponent implements OnInit {
 
       processedData.push(body);
     });
-    this.testFormData[0].childFormDetails = processedData;
+    this.formInductionService.setFormDetails(processedData);
+    this.formInductionService.setFormTracker();
     console.log("inside map");
     console.log(processedData);
   }

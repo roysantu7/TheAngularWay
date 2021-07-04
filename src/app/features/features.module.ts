@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CustomFormsModule } from '../forms/customForms.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormInductionComponent } from './form-induction/form-induction.component';
+import { OutputFormComponent } from './output-form/output-form.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [SignUpComponent, FormInductionComponent],
+  declarations: [SignUpComponent, FormInductionComponent, OutputFormComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

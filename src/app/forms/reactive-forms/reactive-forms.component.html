@@ -145,6 +145,7 @@ fxLayoutAlign="space-between center">
             <div 
             fxFlexAlign="center"
             fxFlexFill>
+                <button class="" (click)="copyItem(formGroupTitle, field.controlName)">Copy {{ field.label }}</button>
                 <button class="" (click)="addItem(formGroupTitle, field.controlName)">Add More {{ field.label }}</button>
             </div>          
             
