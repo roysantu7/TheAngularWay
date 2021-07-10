@@ -112,8 +112,17 @@ export class FormInductionComponent implements OnInit {
     });
     this.formInductionService.setFormDetails(processedData);
     this.formInductionService.setFormTracker();
-    console.log("inside map");
-    console.log(processedData);
   }
 
+  /**
+   * @method getJsonObj
+   * @description return prettified JSON object
+   * @param obj 
+   */
+  getJsonObj(obj:any):any {
+    if(obj) {
+      const newObj = JSON.stringify(obj, null, 2);
+      return newObj;
+    }
+  }
 }

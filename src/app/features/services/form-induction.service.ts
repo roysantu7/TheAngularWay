@@ -23,12 +23,4 @@ export class FormInductionService {
   getFormTracker() {
     return this.formTracker$.asObservable();
   }
-  
-  // set formStructureData(formData: FormStructure[]) {
-  //   this.formStructureData = formData;
-  // }
-
-  // get formStructureData(): FormStructure[] {
-  //   return this.formStructureData;
-  // }
 }

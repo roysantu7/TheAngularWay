@@ -6,6 +6,7 @@ import { CustomFormsModule } from '../forms/customForms.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormInductionComponent } from './form-induction/form-induction.component';
 import { OutputFormComponent } from './output-form/output-form.component';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     CustomFormsModule,
-    SharedModule
+    SharedModule,
+    ClipboardModule
   ]
 })
 export class FeaturesModule { }

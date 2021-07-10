@@ -132,6 +132,57 @@ body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
     margin:10px;
 }
 
+.formArray-Btn {
+    padding: 2px 0px 0px;
+    border-radius: 4px;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-rounded {
+    border-radius: 50px;
+}
+
+.outline-btn-red {
+    border: 2px solid #f04c4c;
+    background: no-repeat;
+}
+.outline-btn-green {
+    border: 2px solid #008000;
+    background: no-repeat;
+}
+
+.outline-btn-success {
+    border: 2px solid #319e98;
+    background: no-repeat;
+}
+.outline-btn-blue {
+    border: 2px solid #467dc3;
+    background: no-repeat;
+}
+
+.solid-btn-red {
+    border: 2px solid #f04c4c;
+    background: #f04c4c;
+    color: #fff;
+}
+.solid-btn-green {
+    border: 2px solid #008000;
+    background: #008000;
+    color: #fff;
+}
+.solid-btn-success {
+    border: 2px solid #319e98;
+    background: #319e98;
+    color: #fff;
+}
+.solid-btn-blue {
+    border: 2px solid #467dc3;
+    background: #467dc3;
+    color: #fff;
+}
+
 // material override
 
 .mat-form-field, .checkbox-field, .radio-field {

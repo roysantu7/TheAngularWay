@@ -120,7 +120,6 @@ fxLayoutAlign="space-between center">
             <app-reactive-forms
             [formGroupInfo]="field.childFormDetails"
             [formGroupTitle]="getFormGroup(field.controlName)"
-            [FormType]="''"
             ></app-reactive-forms>
         </div>
       </ng-container>
@@ -132,38 +131,36 @@ fxLayoutAlign="space-between center">
             <div
                 [formArrayName]="field.controlName"
                 *ngFor="let item of formGroupTitle.get(field.controlName)['controls']; let i = index;" class="py">
-                <button type="button" (click)="deleteItem(field.controlName,i)">Delete this {{ field.label }}</button>
-                <div [formGroupName]="i">
+                <div [formGroupName]="i"> 
                     <app-reactive-forms
                     [formGroupInfo]="field.childFormDetails"
-                    [formGroupTitle]="getFormArray(field.controlName, i)"
-                    [FormType]="''"
+                    [formGroupTitle]="getFormArrayGroup(field.controlName, i)"
                     ></app-reactive-forms>
                 </div>
-                <mat-divider [inset]="true"></mat-divider>
-            </div>
+                <div 
+                class="form-array-btn-group pb"
+                fxLayout="row wrap"
+                fxLayoutAlign="flex-end center"
+                fxLayoutGap="10px">
+                    <button class="formArray-Btn solid-btn-red btn-rounded" title="delete {{ field.label }}" (click)="deleteItem(field.controlName,i)">
+                        <mat-icon aria-hidden="false" aria-label="delete icon">delete_sweep</mat-icon>
+                    </button>
+                    <button class="formArray-Btn solid-btn-success btn-rounded" title="copy {{ field.label }}" (click)="copyItem(formGroupTitle, field.controlName)">
+                        <mat-icon aria-hidden="false" aria-label="copy icon">content_copy</mat-icon>
+                    </button>
+                </div>
+            </div>         
             <div 
-            fxFlexAlign="center"
-            fxFlexFill>
-                <button class="" (click)="copyItem(formGroupTitle, field.controlName)">Copy {{ field.label }}</button>
-                <button class="" (click)="addItem(formGroupTitle, field.controlName)">Add More {{ field.label }}</button>
-            </div>          
-            
+            class="form-array-btn-group"
+            fxLayout="row wrap"
+            fxLayoutAlign="flex-end center"
+            fxLayoutGap="10px">
+                <button class="formArray-Btn solid-btn-blue btn-rounded" title="add {{ field.label }}" (click)="addItem(formGroupTitle, field.controlName)">
+                    <mat-icon aria-hidden="false" aria-label="add icon">add</mat-icon>
+                </button>
+            </div>
         </div>
       </ng-container>
     </div>
   </ng-container>
 </div>
-<!-- 
-<div [formGroup]="orderForm">
-    <div
-        formArrayName="items"
-        *ngFor="let item of orderForm.get('items')['controls']; let i = index;">
-    <div [formGroupName]="i">
-      <input formControlName="name" placeholder="Item name">
-      <input formControlName="description" placeholder="Item description">
-      <input formControlName="price" placeholder="Item price">
-    </div>
-</div>
-<button type="button" (click)="addItem()">Add Item</button>
-</div> -->
